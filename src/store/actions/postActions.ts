@@ -2,6 +2,7 @@
 import { Post } from 'src/core/domain/posts'
 import { SocialError } from 'src/core/domain/common'
 import { Map } from 'immutable'
+import { postComments } from 'models/comments/commentTypes'
 
 // - Import utility components
 import moment from 'moment/moment'
@@ -15,12 +16,13 @@ import * as globalActions from 'store/actions/globalActions'
 import { IPostService } from 'src/core/services/posts'
 import { SocialProviderTypes } from 'src/core/socialProviderTypes'
 import { provider } from 'src/socialEngine'
+import { ICommentService } from 'core/services';
 
 /**
  * Get service providers
  */
 const postService: IPostService = provider.get<IPostService>(SocialProviderTypes.PostService)
-
+const commentService: ICommentService = provider.get<ICommentService>(SocialProviderTypes.CommentService)
 /* _____________ CRUD DB _____________ */
 
 /**
@@ -145,6 +147,12 @@ export const dbDeletePost = (id: string) => {
     const state: Map<string, any>  = getState()
     // Get current user id
     let uid: string = state.getIn(['authorize', 'uid'])
+
+    commentService.getComments(id, (comments: postComments) => {
+      if(comments.postId.commentId.id){
+        commentService.deleteComment(comments.postId.commentId.id);
+      }
+    })
 
     return postService.deletePost(id).then(() => {
       dispatch(deletePost(uid, id))
