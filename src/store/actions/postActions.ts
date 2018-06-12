@@ -16,7 +16,7 @@ import * as globalActions from 'store/actions/globalActions'
 import { IPostService } from 'src/core/services/posts'
 import { SocialProviderTypes } from 'src/core/socialProviderTypes'
 import { provider } from 'src/socialEngine'
-import { ICommentService } from 'core/services';
+import { ICommentService } from 'core/services'
 
 /**
  * Get service providers
@@ -149,8 +149,8 @@ export const dbDeletePost = (id: string) => {
     let uid: string = state.getIn(['authorize', 'uid'])
 
     commentService.getComments(id, (comments: postComments) => {
-      if(comments.postId.commentId.id){
-        commentService.deleteComment(comments.postId.commentId.id);
+      if (comments.postId.commentId.id){
+        commentService.deleteComment(comments.postId.commentId.id)
       }
     })
 

@@ -59,8 +59,7 @@
             true,
             "check-catch",
             "check-else",
-            "check-open-brace",
-            "check-whitespace"
+            "check-open-brace"
         ],
         "quotemark": [true, "single", "avoid-escape", "jsx-single"],
         "radix": true,
@@ -75,27 +74,6 @@
             "parameter",
             "property-declaration"
         ],
-        "typedef-whitespace": [
-            true,
-            {
-                "call-signature": "nospace",
-                "index-signature": "nospace",
-                "parameter": "nospace",
-                "property-declaration": "nospace",
-                "variable-declaration": "nospace"
-            }
-        ],
-        "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"],
-        "whitespace": [
-            true,
-            "check-branch",
-            "check-decl",
-            "check-operator",
-            "check-rest-spread",
-            "check-type",
-            "check-typecast",
-            "check-type-operator",
-            "check-preblock"
-          ]
+        "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"]
     }
 }
